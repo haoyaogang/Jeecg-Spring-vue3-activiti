@@ -1,0 +1,21 @@
+server:
+  port: 7003
+
+spring:
+  application:
+    name: jeecg-activiti
+  main:
+    allow-circular-references: true
+  profiles:
+      active: '@profile.name@'
+  config:
+    import:
+      - optional:nacos:jeecg.yaml
+      - optional:nacos:jeecg-@profile.name@.yaml
+  cloud:
+    nacos:
+      config:
+        server-addr: '@config.server-addr@'
+      discovery:
+        server-addr: ${spring.cloud.nacos.config.server-addr}
+
